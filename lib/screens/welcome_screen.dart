@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:grocery_app/screens/category_list_screen.dart';
-
+import '../constants/sizings.dart';
 import '../helpers/icon_helper.dart';
+import '../widgets/constants/colors.dart';
+import '../widgets/constants/images.dart';
 import '../widgets/icon_font.dart';
 
 class WelcomeScreen extends StatelessWidget {
@@ -10,14 +12,14 @@ class WelcomeScreen extends StatelessWidget {
       body: Container(
         color: Colors.black,
         child: Stack(children: [
-          Opacity(
+          Positioned.fill(
+              child: Opacity(
             opacity: 0.3,
-            child: Positioned.fill(
-                child: Image.asset(
-              'assets/imgs/of_main_bg.png',
+            child: Image.asset(
+              WelcomeImage,
               fit: BoxFit.cover,
-            )),
-          ),
+            ),
+          )),
           Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -26,9 +28,9 @@ class WelcomeScreen extends StatelessWidget {
                 Center(
                   child: ClipOval(
                     child: Container(
-                      width: 100,
-                      height: 100,
-                      color: const Color(0xFF80C038),
+                      width: 175,
+                      height: 175,
+                      color: GAPrimaryColor,
                       alignment: Alignment.center,
                       child: IconFont(
                         iconName: IconHelper.MAIN_LOGO,
@@ -50,7 +52,7 @@ class WelcomeScreen extends StatelessWidget {
                       fontWeight: FontWeight.bold),
                 ),
                 const SizedBox(
-                  height: 40,
+                  height: 10,
                 ),
                 const Text(
                   'Productos Frescos, \n Saludables. A Tiempo',
@@ -64,10 +66,10 @@ class WelcomeScreen extends StatelessWidget {
                   height: 40,
                 ),
                 Padding(
-                  padding: const EdgeInsets.all(20.0),
+                  padding: const EdgeInsets.all(GAButtonRadius),
                   child: InkWell(
-                    splashColor: const Color(0xFF80C038).withOpacity(0.2),
-                    highlightColor: const Color(0xFF80C038).withOpacity(0.2),
+                    splashColor: GAPrimaryColor.withOpacity(0.2),
+                    highlightColor: GAPrimaryColor.withOpacity(0.2),
                     child: ElevatedButton(
                         onPressed: () {
                           Navigator.push(
@@ -76,8 +78,12 @@ class WelcomeScreen extends StatelessWidget {
                                 builder: (context) => CategoryListScreen(),
                               ));
                         },
-                        style: ElevatedButton.styleFrom(
-                            backgroundColor: const Color(0xFF80C038)),
+                        style: OutlinedButton.styleFrom(
+                            padding: const EdgeInsets.all(15),
+                            backgroundColor: GAPrimaryColor,
+                            shape: RoundedRectangleBorder(
+                                borderRadius:
+                                    BorderRadius.circular(GAButtonRadius))),
                         child: const Text(
                           "SIGNUP",
                           style: TextStyle(
@@ -87,27 +93,29 @@ class WelcomeScreen extends StatelessWidget {
                         )),
                   ),
                 ),
-                const SizedBox(
-                  height: 40,
-                ),
-                Material(
+                Padding(
+                  padding: const EdgeInsets.all(20),
                   child: InkWell(
-                    splashColor: const Color(0xFF80C038).withOpacity(0.2),
-                    highlightColor: const Color(0xFF80C038).withOpacity(0.2),
+                    splashColor: GAPrimaryColor.withOpacity(0.2),
+                    highlightColor: GAPrimaryColor.withOpacity(0.2),
                     child: ElevatedButton(
                       onPressed: () {
                         // Add your button's onPress logic here
                       },
                       style: ElevatedButton.styleFrom(
+                        padding: const EdgeInsets.all(15),
+                        shape: RoundedRectangleBorder(
+                            borderRadius:
+                                BorderRadius.circular(GAButtonRadius)),
                         backgroundColor: Colors
                             .transparent, // Set a transparent background color
                         side: const BorderSide(
-                            color: Color(0xFF80C038), width: 2), // Add a border
+                            color: GAPrimaryColor, width: 2), // Add a border
                       ),
                       child: const Text(
                         "LOGIN",
                         style: TextStyle(
-                          color: Color(0xFF80C038),
+                          color: GAPrimaryColor,
                           fontSize: 16,
                           fontWeight: FontWeight.bold,
                         ),
