@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:grocery_app/screens/category_list_screen.dart';
+import '../constants/colors.dart';
+import '../constants/images.dart';
 import '../constants/sizings.dart';
+import '../screens/category_list_screen.dart';
 import '../helpers/icon_helper.dart';
-import '../widgets/constants/colors.dart';
-import '../widgets/constants/images.dart';
 import '../widgets/icon_font.dart';
 
 class WelcomeScreen extends StatelessWidget {
