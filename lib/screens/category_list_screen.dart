@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:grocery_app/helpers/appcolors.dart';
 import 'package:grocery_app/models/category.dart';
+import 'package:grocery_app/screens/selected_category_list_screen.dart';
 import 'package:grocery_app/widgets/icon_font.dart';
 
 import '../helpers/icon_helper.dart';
 import '../helpers/utils.dart';
 import '../widgets/category_card.dart';
 import '../widgets/Category_bottom_bar.dart';
-import '../widgets/selected_category_page.dart';
+import '../widgets/mainappbar.dart';
 
 class CategoryListScreen extends StatelessWidget {
   CategoryListScreen({super.key});
@@ -16,22 +17,7 @@ class CategoryListScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         drawer: const Drawer(),
-        appBar: AppBar(
-          title: IconFont(
-              iconName: IconHelper.MAIN_LOGO,
-              color: AppColors.MAIN_COLOR,
-              size: 40),
-          backgroundColor: Colors.transparent,
-          elevation: 0.0,
-          iconTheme: const IconThemeData(color: AppColors.MAIN_COLOR),
-          actions: [
-            Container(
-              margin: const EdgeInsets.all(10.0),
-              padding: const EdgeInsets.all(10.0),
-              child: ClipOval(child: Image.asset('assets/imgs/me.jpg')),
-            )
-          ],
-        ),
+        appBar: MainAppBar(),
         body: Container(
           child: Stack(children: [
             Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
@@ -55,7 +41,9 @@ class CategoryListScreen extends StatelessWidget {
                                   context,
                                   MaterialPageRoute(
                                     builder: (context) =>
-                                        SelectedCategoryPage(),
+                                        SelectedCategoryScreen(
+                                            selectedCategory:
+                                                categories[index]),
                                   ));
                             });
                       }))

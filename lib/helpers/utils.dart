@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:grocery_app/helpers/icon_helper.dart';
 import 'package:grocery_app/models/category.dart';
+import 'package:grocery_app/models/subcategory.dart';
 
 import 'appcolors.dart';
 
@@ -12,7 +13,44 @@ class Utils {
           icon: IconHelper.MEATS,
           imgName: 'cat1',
           name: 'Carnes',
-          subCategories: []),
+          subCategories: [
+            SubCategory(
+              color: AppColors.MEATS,
+              name: "Cerdo",
+              imgName: "cat1_1",
+              icon: IconHelper.MEATS,
+            ),
+            SubCategory(
+              name: "Vaca",
+              imgName: "cat1_2",
+              icon: IconHelper.MEATS,
+              color: AppColors.MEATS,
+            ),
+            SubCategory(
+              name: "Gallina",
+              imgName: "cat1_3",
+              icon: IconHelper.MEATS,
+              color: AppColors.MEATS,
+            ),
+            SubCategory(
+              name: "Pavo",
+              imgName: "cat1_4",
+              icon: IconHelper.MEATS,
+              color: AppColors.MEATS,
+            ),
+            SubCategory(
+              name: "Chivo",
+              imgName: "cat1_5",
+              icon: IconHelper.MEATS,
+              color: AppColors.MEATS,
+            ),
+            SubCategory(
+              name: "Conejo",
+              imgName: "cat1_6",
+              icon: IconHelper.MEATS,
+              color: AppColors.MEATS,
+            )
+          ]),
       Categories(
           color: AppColors.FRUITS,
           icon: IconHelper.FRUITS,
