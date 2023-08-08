@@ -19,6 +19,7 @@ class _MainAppBarState extends State<MainAppBar> {
     return AppBar(
       title: IconFont(
           iconName: IconHelper.MAIN_LOGO, color: widget.themeColor, size: 40),
+      centerTitle: true,
       backgroundColor: Colors.transparent,
       elevation: 0.0,
       iconTheme: IconThemeData(color: widget.themeColor),

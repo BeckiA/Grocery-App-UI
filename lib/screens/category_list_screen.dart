@@ -7,7 +7,7 @@ import 'package:grocery_app/widgets/icon_font.dart';
 import '../helpers/icon_helper.dart';
 import '../helpers/utils.dart';
 import '../widgets/category_card.dart';
-import '../widgets/Category_bottom_bar.dart';
+import '../widgets/category_bottom_bar.dart';
 import '../widgets/mainappbar.dart';
 
 class CategoryListScreen extends StatelessWidget {
