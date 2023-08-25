@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:grocery_app/helpers/appcolors.dart';
+import 'package:grocery_app/screens/onboarding_screen.dart';
+import 'package:grocery_app/widgets/theme_button.dart';
 import '../constants/colors.dart';
 import '../constants/images.dart';
 import '../constants/sizings.dart';
@@ -65,64 +68,22 @@ class WelcomeScreen extends StatelessWidget {
                 const SizedBox(
                   height: 40,
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(GAButtonRadius),
-                  child: InkWell(
-                    splashColor: GAPrimaryColor.withOpacity(0.2),
-                    highlightColor: GAPrimaryColor.withOpacity(0.2),
-                    child: ElevatedButton(
-                        onPressed: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => CategoryListScreen(),
-                              ));
-                        },
-                        style: OutlinedButton.styleFrom(
-                            padding: const EdgeInsets.all(15),
-                            backgroundColor: GAPrimaryColor,
-                            shape: RoundedRectangleBorder(
-                                borderRadius:
-                                    BorderRadius.circular(GAButtonRadius))),
-                        child: const Text(
-                          "SIGNUP",
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold),
-                        )),
-                  ),
+                ThemeButton(
+                  label: 'SIGNUP',
+                  icon: Text(''),
+                  onClick: () {},
+                  color: AppColors.MAIN_COLOR,
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(20),
-                  child: InkWell(
-                    splashColor: GAPrimaryColor.withOpacity(0.2),
-                    highlightColor: GAPrimaryColor.withOpacity(0.2),
-                    child: ElevatedButton(
-                      onPressed: () {
-                        // Add your button's onPress logic here
-                      },
-                      style: ElevatedButton.styleFrom(
-                        padding: const EdgeInsets.all(15),
-                        shape: RoundedRectangleBorder(
-                            borderRadius:
-                                BorderRadius.circular(GAButtonRadius)),
-                        backgroundColor: Colors
-                            .transparent, // Set a transparent background color
-                        side: const BorderSide(
-                            color: GAPrimaryColor, width: 2), // Add a border
-                      ),
-                      child: const Text(
-                        "LOGIN",
-                        style: TextStyle(
-                          color: GAPrimaryColor,
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
+                ThemeButton(
+                    label: 'TO ONBOARDING',
+                    icon: Text(''),
+                    onClick: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => OnboardingScreen(),
+                          ));
+                    })
               ],
             ),
           )

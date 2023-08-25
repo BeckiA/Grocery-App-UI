@@ -3,9 +3,24 @@ import 'package:grocery_app/models/category.dart';
 import 'package:grocery_app/models/subcategory.dart';
 
 import '../models/categorypart.dart';
+import '../models/onboarding_content.dart';
 import 'appcolors.dart';
 
 class Utils {
+  static List<OnboardingContent> getOnboarding() {
+    return [
+      OnboardingContent(
+          message: 'Productos\nfrescos, de la\ntierra a su mesa',
+          img: 'onboard1'),
+      OnboardingContent(
+          message: 'Carnes y embutidos\nfrescos y saludables\npara su deleite',
+          img: 'onboard2'),
+      OnboardingContent(
+          message: 'Adquiéralos desde\nla comodidad de su\ndispositivo móbil',
+          img: 'onboard3')
+    ];
+  }
+
   static List<Categories> getMockedCategories() {
     return [
       Categories(
