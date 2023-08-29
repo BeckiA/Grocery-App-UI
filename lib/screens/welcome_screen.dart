@@ -1,16 +1,22 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
 import 'package:grocery_app/helpers/appcolors.dart';
 import 'package:grocery_app/screens/onboarding_screen.dart';
 import 'package:grocery_app/widgets/theme_button.dart';
+import 'package:provider/provider.dart';
 import '../constants/colors.dart';
 import '../constants/images.dart';
-import '../constants/sizings.dart';
 import '../screens/category_list_screen.dart';
 import '../helpers/icon_helper.dart';
+import '../services/login_service.dart';
 import '../widgets/icon_font.dart';
 
 class WelcomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
+    LoginService loginService =
+        Provider.of<LoginService>(context, listen: false);
+
     return Scaffold(
       body: Container(
         color: Colors.black,
@@ -71,7 +77,16 @@ class WelcomeScreen extends StatelessWidget {
                 ThemeButton(
                   label: 'SIGNUP',
                   icon: Text(''),
-                  onClick: () {},
+                  onClick: () async {
+                    bool success = await loginService.signInWithGoogle();
+                    if (success) {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => CategoryListScreen(),
+                          ));
+                    }
+                  },
                   color: AppColors.MAIN_COLOR,
                 ),
                 ThemeButton(

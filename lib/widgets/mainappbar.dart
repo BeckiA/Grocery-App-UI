@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:grocery_app/widgets/user_profile_header.dart';
 
 import '../helpers/appcolors.dart';
 import '../helpers/icon_helper.dart';
 import 'icon_font.dart';
 
 class MainAppBar extends StatefulWidget implements PreferredSizeWidget {
+  bool showProfilePic;
   Color themeColor;
-  MainAppBar({this.themeColor = AppColors.MAIN_COLOR});
+  MainAppBar(
+      {this.themeColor = AppColors.MAIN_COLOR, this.showProfilePic = true});
 
   Size get preferredSize => const Size.fromHeight(80);
   @override
@@ -23,13 +26,7 @@ class _MainAppBarState extends State<MainAppBar> {
       backgroundColor: Colors.transparent,
       elevation: 0.0,
       iconTheme: IconThemeData(color: widget.themeColor),
-      actions: [
-        Container(
-          margin: const EdgeInsets.all(10.0),
-          padding: const EdgeInsets.all(10.0),
-          child: ClipOval(child: Image.asset('assets/imgs/me.jpg')),
-        )
-      ],
+      actions: [UserProfilePic(widget.showProfilePic)],
     );
   }
 }

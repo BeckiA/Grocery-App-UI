@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:grocery_app/helpers/appcolors.dart';
 import 'package:grocery_app/helpers/icon_helper.dart';
 import 'package:grocery_app/models/onboarding_content.dart';
@@ -131,12 +129,14 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       )),
             ),
             ThemeButton(
-                label: "Saltar Onbaoarding", icon: Text(''), onClick: () {
+                label: "Saltar Onbaoarding",
+                icon: Text(''),
+                onClick: () {
                   Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => CategoryListScreen(),
-                          ));
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => CategoryListScreen(),
+                      ));
                 })
           ],
         ),
