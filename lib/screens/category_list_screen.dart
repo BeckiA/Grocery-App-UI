@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:grocery_app/helpers/appcolors.dart';
 import 'package:grocery_app/models/category.dart';
-import 'package:grocery_app/screens/selected_category_list_screen.dart';
-import 'package:grocery_app/widgets/icon_font.dart';
-
-import '../helpers/icon_helper.dart';
+import 'package:grocery_app/models/side_menu_bar.dart';
+import 'package:grocery_app/services/category_selection_services.dart';
+import 'package:provider/provider.dart';
 import '../helpers/utils.dart';
 import '../widgets/category_card.dart';
 import '../widgets/category_bottom_bar.dart';
@@ -15,8 +13,13 @@ class CategoryListScreen extends StatelessWidget {
   List<Categories> categories = Utils.getMockedCategories();
   @override
   Widget build(BuildContext context) {
+    CategorySelectionServices catSelection =
+        Provider.of(context, listen: false);
+
     return Scaffold(
-        drawer: const Drawer(),
+        drawer:  Drawer(
+          child: SideMenuBar(),
+        ),
         appBar: MainAppBar(),
         body: Container(
           child: Stack(children: [
@@ -37,14 +40,10 @@ class CategoryListScreen extends StatelessWidget {
                             category: categories[index],
                             onCardClick: () {
                               // Will Get routed to the detail screen
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) =>
-                                        SelectedCategoryScreen(
-                                            selectedCategory:
-                                                categories[index]),
-                                  ));
+                              catSelection.selectedCategory =
+                                  this.categories[index];
+                              Navigator.of(context)
+                                  .pushNamed('/selectedCategoryScreen');
                             });
                       }))
             ]),

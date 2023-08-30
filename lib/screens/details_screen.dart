@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:grocery_app/helpers/appcolors.dart';
-import 'package:grocery_app/models/categorypart.dart';
+import 'package:grocery_app/services/category_selection_services.dart';
 import 'package:grocery_app/widgets/category_icon.dart';
-import '../constants/colors.dart';
-import '../constants/sizings.dart';
+import 'package:provider/provider.dart';
 import '../models/subcategory.dart';
 import '../widgets/category_part_list.dart';
 import '../widgets/mainappbar.dart';
@@ -11,8 +10,8 @@ import '../widgets/theme_button.dart';
 import '../widgets/unit_price.dart';
 
 class DetailsScreen extends StatefulWidget {
-  SubCategory subCategory;
-  DetailsScreen({required this.subCategory});
+  late SubCategory subCategory;
+
   @override
   DetailsScreenState createState() => DetailsScreenState();
 }
@@ -20,6 +19,9 @@ class DetailsScreen extends StatefulWidget {
 class DetailsScreenState extends State<DetailsScreen> {
   @override
   Widget build(BuildContext context) {
+    CategorySelectionServices catSelection =
+        Provider.of<CategorySelectionServices>(context, listen: false);
+    widget.subCategory = catSelection.selectedSubCategory;
     return Scaffold(
       body: Container(
         alignment: Alignment.center,

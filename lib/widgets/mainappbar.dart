@@ -20,8 +20,20 @@ class _MainAppBarState extends State<MainAppBar> {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      title: IconFont(
-          iconName: IconHelper.MAIN_LOGO, color: widget.themeColor, size: 40),
+      title: GestureDetector(
+        onTap: () {
+          NavigatorState navigator = Navigator.of(context);
+          if (navigator.canPop()) {
+            navigator.popUntil(
+                (route) => route.settings.name == '/categoryListScreen');
+          } else {
+            // If there are no routes to pop, you might consider pushing '/categoryListScreen' instead
+            navigator.pushNamed('/categoryListScreen');
+          }
+        },
+        child: IconFont(
+            iconName: IconHelper.MAIN_LOGO, color: widget.themeColor, size: 40),
+      ),
       centerTitle: true,
       backgroundColor: Colors.transparent,
       elevation: 0.0,

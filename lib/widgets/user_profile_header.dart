@@ -14,17 +14,13 @@ class UserProfilePic extends StatelessWidget {
         Provider.of<LoginService>(context, listen: false);
     LoginUserModel userModel = loginService.loggedInUserModel;
 
-    // ignore: unnecessary_null_comparison
     String? imgPath = userModel != null ? userModel.photoUrl : '';
+
     return showProfilePic && imgPath!.isNotEmpty
         ? Container(
-            margin: const EdgeInsets.all(10.0),
-            padding: const EdgeInsets.all(10.0),
-            child: ClipOval(child: Image.network(imgPath)),
-          )
-        : const SizedBox(
-            height: 40,
-            width: 40,
-          );
+            margin: const EdgeInsets.only(right: 10),
+            padding: const EdgeInsets.all(10),
+            child: ClipOval(child: Image.network(imgPath)))
+        : const SizedBox(width: 40, height: 40);
   }
 }
