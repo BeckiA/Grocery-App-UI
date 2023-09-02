@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:grocery_app/models/category.dart';
 import 'package:grocery_app/models/subcategory.dart';
 import 'package:grocery_app/screens/category_list_screen.dart';
 import 'package:grocery_app/screens/details_screen.dart';
@@ -7,6 +6,7 @@ import 'package:grocery_app/screens/onboarding_screen.dart';
 import 'package:grocery_app/screens/selected_category_list_screen.dart';
 import 'package:grocery_app/screens/splash_screen.dart';
 import 'package:grocery_app/screens/welcome_screen.dart';
+import 'package:grocery_app/services/cart_service.dart';
 import 'package:grocery_app/services/category_selection_services.dart';
 import 'package:grocery_app/services/login_service.dart';
 import 'package:provider/provider.dart';
@@ -18,6 +18,9 @@ void main() {
       Provider(create: (context) => LoginService()),
       Provider(
         create: (context) => CategorySelectionServices(),
+      ),
+      ChangeNotifierProvider(
+        create: (context) => CartService(),
       )
     ],
     child: MaterialApp(

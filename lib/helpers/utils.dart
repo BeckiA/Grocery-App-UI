@@ -1,4 +1,5 @@
 import 'package:grocery_app/helpers/icon_helper.dart';
+import 'package:grocery_app/helpers/unit_enums.dart';
 import 'package:grocery_app/models/category.dart';
 import 'package:grocery_app/models/subcategory.dart';
 
@@ -159,5 +160,18 @@ class Utils {
           name: 'Especies',
           subCategories: []),
     ];
+  }
+
+  static String weightUnitToString(WeightUnits unit) {
+    switch (unit) {
+      case WeightUnits.Kg:
+        return 'kg.';
+      case WeightUnits.Lb:
+        return 'lb.';
+      case WeightUnits.Oz:
+        return 'oz.';
+      default:
+        return 'lb.';
+    }
   }
 }
