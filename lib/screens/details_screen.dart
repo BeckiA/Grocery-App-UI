@@ -145,7 +145,7 @@ class DetailsScreenState extends State<DetailsScreen> {
                     child: Text('Select the part you want.'),
                   ),
                   CategoryPartList(subCategory: widget.subCategory),
-                  UnitPrice(),
+                  UnitPriceWidget(),
                   Consumer<CartService>(
                     builder: (context, cart, child) {
                       Widget renderedButton;

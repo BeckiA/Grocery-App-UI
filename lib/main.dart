@@ -16,7 +16,7 @@ void main() {
   runApp(MultiProvider(
     providers: [
       Provider(create: (context) => LoginService()),
-      Provider(
+      ChangeNotifierProvider(
         create: (context) => CategorySelectionServices(),
       ),
       ChangeNotifierProvider(

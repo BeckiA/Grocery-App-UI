@@ -1,24 +1,41 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:grocery_app/models/subcategory.dart';
+import 'package:grocery_app/services/category_selection_services.dart';
+import 'package:provider/provider.dart';
 
 import '../constants/colors.dart';
 import '../constants/sizings.dart';
 import '../helpers/appcolors.dart';
+import '../helpers/unit_enums.dart';
 
-class UnitPrice extends StatefulWidget {
+const int MAX_VALUE = 20;
+const int MIN_VALUE = 0;
+
+class UnitPriceWidget extends StatefulWidget {
+  Color themeColor;
   int amount = 0;
-  double price = 15.0;
+  double price = 0.0;
+  WeightUnits unit;
   double cost = 0.0;
-  // const UnitPrice({super.key});
+
+  UnitPriceWidget(
+      {this.themeColor = AppColors.MAIN_COLOR,
+      this.price = 0,
+      this.unit = WeightUnits.Lb});
 
   @override
-  State<UnitPrice> createState() => _UnitPriceState();
+  State<UnitPriceWidget> createState() => _UnitPriceWidgetState();
 }
 
-class _UnitPriceState extends State<UnitPrice> {
+class _UnitPriceWidgetState extends State<UnitPriceWidget> {
   @override
   Widget build(BuildContext context) {
+    CategorySelectionServices catSelection =
+        Provider.of(context)<CategorySelectionServices>(context);
+    SubCategory subCategory = catSelection.selectedSubCategory;
+
     return Column(
       children: [
         const Padding(
@@ -48,48 +65,54 @@ class _UnitPriceState extends State<UnitPrice> {
             children: [
               GestureDetector(
                 onTap: () {
-                  widget.amount < 20
-                      ? setState(() {
-                          widget.amount++;
-
-                          widget.cost = widget.price * widget.amount;
-                        })
+                  catSelection.selectedSubCategory.amount < MAX_VALUE
+                      ? catSelection.selectedSubCategory.amount++
                       : null;
+                  catSelection.selectedSubCategory =
+                      catSelection.selectedSubCategory;
                 },
-                child: const Icon(
+                child: Icon(
                   Icons.add_circle_outline,
                   size: 50,
-                  color: AppColors.MEATS,
+                  color: catSelection.selectedSubCategory.amount < MAX_VALUE
+                      ? widget.themeColor
+                      : widget.themeColor.withOpacity(0.2),
                 ),
               ),
               Expanded(
                 child: Padding(
                   padding: const EdgeInsets.only(bottom: 10),
-                  child: Center(
-                    child: Text.rich(TextSpan(children: [
-                      TextSpan(
-                          text: widget.amount.toString(),
-                          style: const TextStyle(fontSize: 40)),
-                      const TextSpan(
-                          text: 'lbs', style: TextStyle(fontSize: 20))
-                    ])),
+                  child: Consumer<CategorySelectionServices>(
+                    builder: (context, cat, child) => Center(
+                      child: Text.rich(TextSpan(children: [
+                        TextSpan(
+                            text: widget.amount.toString(),
+                            style: const TextStyle(fontSize: 40)),
+                        TextSpan(
+                            // ignor e: unnecessary_null_comparison
+                            text: catSelection.selectedSubCategory != null
+                                ? catSelection.selectedSubCategory.amount
+                                    .toString()
+                                : '0',
+                            style: const TextStyle(fontSize: 20))
+                      ])),
+                    ),
                   ),
                 ),
               ),
               GestureDetector(
                 onTap: () {
                   // Decrement
-                  widget.amount > 0
-                      ? setState(() {
-                          widget.amount--;
-                          widget.cost = widget.price * widget.amount;
-                        })
+                  widget.amount > MIN_VALUE
+                      ? catSelection.selectedSubCategory.amount--
                       : null;
                 },
-                child: const Icon(
+                child: Icon(
                   Icons.remove_circle_outline,
                   size: 50,
-                  color: Colors.grey,
+                  color: catSelection.selectedSubCategory.amount > MIN_VALUE
+                      ? Colors.grey
+                      : Colors.grey[100],
                 ),
               ),
             ],
@@ -105,11 +128,12 @@ class _UnitPriceState extends State<UnitPrice> {
                 const TextSpan(text: 'Price: '),
                 TextSpan(
                     text: '\$${widget.price} / lb',
-                    style: TextStyle(fontWeight: FontWeight.bold)),
+                    style: const TextStyle(fontWeight: FontWeight.bold)),
               ])),
               Text(
                 '\$${widget.cost}',
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                style:
+                    const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               )
             ],
           ),
