@@ -1,14 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:grocery_app/models/subcategory.dart';
 import 'package:grocery_app/services/category_selection_services.dart';
 import 'package:provider/provider.dart';
-
-import '../constants/colors.dart';
-import '../constants/sizings.dart';
 import '../helpers/appcolors.dart';
 import '../helpers/unit_enums.dart';
+import '../helpers/utils.dart';
 
 const int MAX_VALUE = 20;
 const int MIN_VALUE = 0;
@@ -33,18 +29,23 @@ class _UnitPriceWidgetState extends State<UnitPriceWidget> {
   @override
   Widget build(BuildContext context) {
     CategorySelectionServices catSelection =
-        Provider.of(context)<CategorySelectionServices>(context);
+        Provider.of<CategorySelectionServices>(context);
     SubCategory subCategory = catSelection.selectedSubCategory;
+
+    widget.themeColor = subCategory.color;
+    widget.price = subCategory.price;
+    widget.unit = subCategory.unit;
 
     return Column(
       children: [
-        const Padding(
+        Padding(
           padding: EdgeInsets.all(20.0),
           child: Text.rich(TextSpan(children: [
             TextSpan(text: 'Unit: '),
             TextSpan(
-                text: 'Pound', style: TextStyle(fontWeight: FontWeight.bold)),
-            TextSpan(text: ' (max. 20)', style: TextStyle(fontSize: 12))
+                text: '${Utils.weightUnitToString(widget.unit)} ',
+                style: const TextStyle(fontWeight: FontWeight.bold)),
+            const TextSpan(text: '(max. 20)', style: TextStyle(fontSize: 12))
           ])),
         ),
         Container(
@@ -64,13 +65,11 @@ class _UnitPriceWidgetState extends State<UnitPriceWidget> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               GestureDetector(
-                onTap: () {
-                  catSelection.selectedSubCategory.amount < MAX_VALUE
-                      ? catSelection.selectedSubCategory.amount++
-                      : null;
-                  catSelection.selectedSubCategory =
-                      catSelection.selectedSubCategory;
-                },
+                onTap: catSelection.subCategoryAmount < MAX_VALUE
+                    ? () {
+                        catSelection.incrementSubCategoryAmount();
+                      }
+                    : null,
                 child: Icon(
                   Icons.add_circle_outline,
                   size: 50,
@@ -86,14 +85,11 @@ class _UnitPriceWidgetState extends State<UnitPriceWidget> {
                     builder: (context, cat, child) => Center(
                       child: Text.rich(TextSpan(children: [
                         TextSpan(
-                            text: widget.amount.toString(),
+                            text: catSelection.subCategoryAmount.toString(),
                             style: const TextStyle(fontSize: 40)),
                         TextSpan(
                             // ignor e: unnecessary_null_comparison
-                            text: catSelection.selectedSubCategory != null
-                                ? catSelection.selectedSubCategory.amount
-                                    .toString()
-                                : '0',
+                            text: Utils.weightUnitToString(widget.unit),
                             style: const TextStyle(fontSize: 20))
                       ])),
                     ),
@@ -101,12 +97,12 @@ class _UnitPriceWidgetState extends State<UnitPriceWidget> {
                 ),
               ),
               GestureDetector(
-                onTap: () {
-                  // Decrement
-                  widget.amount > MIN_VALUE
-                      ? catSelection.selectedSubCategory.amount--
-                      : null;
-                },
+                onTap: catSelection.subCategoryAmount > MIN_VALUE
+                    ? () {
+                        // Decrement
+                        catSelection.decrementSubCategoryAmount();
+                      }
+                    : null,
                 child: Icon(
                   Icons.remove_circle_outline,
                   size: 50,
@@ -127,11 +123,12 @@ class _UnitPriceWidgetState extends State<UnitPriceWidget> {
               Text.rich(TextSpan(children: [
                 const TextSpan(text: 'Price: '),
                 TextSpan(
-                    text: '\$${widget.price} / lb',
+                    text:
+                        '\$${widget.price.toStringAsFixed(2)} / ${Utils.weightUnitToString(widget.unit)}',
                     style: const TextStyle(fontWeight: FontWeight.bold)),
               ])),
               Text(
-                '\$${widget.cost}',
+                '\$${widget.cost.toStringAsFixed(2)}',
                 style:
                     const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               )

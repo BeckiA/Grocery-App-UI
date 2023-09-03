@@ -17,7 +17,7 @@ class CategoryListScreen extends StatelessWidget {
         Provider.of(context, listen: false);
 
     return Scaffold(
-        drawer:  Drawer(
+        drawer: Drawer(
           child: SideMenuBar(),
         ),
         appBar: MainAppBar(),
@@ -47,7 +47,7 @@ class CategoryListScreen extends StatelessWidget {
                             });
                       }))
             ]),
-            const Positioned(
+            Positioned(
                 bottom: 0, left: 0, right: 0, child: CategoryBottomBar()),
           ]),
         ));
