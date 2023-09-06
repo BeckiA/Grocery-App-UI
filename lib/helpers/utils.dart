@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:grocery_app/helpers/icon_helper.dart';
 import 'package:grocery_app/helpers/unit_enums.dart';
 import 'package:grocery_app/models/category.dart';
@@ -8,6 +9,9 @@ import '../models/onboarding_content.dart';
 import 'appcolors.dart';
 
 class Utils {
+  static GlobalKey<NavigatorState> mainListNav = GlobalKey();
+  static GlobalKey<NavigatorState> mainAppNav = GlobalKey();
+
   static List<OnboardingContent> getOnboarding() {
     return [
       OnboardingContent(

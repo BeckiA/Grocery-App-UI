@@ -2,11 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:grocery_app/helpers/appcolors.dart';
 import 'package:grocery_app/helpers/icon_helper.dart';
 import 'package:grocery_app/models/onboarding_content.dart';
-import 'package:grocery_app/screens/category_list_screen.dart';
+import 'package:grocery_app/screens/main_screen.dart';
 import 'package:grocery_app/widgets/icon_font.dart';
 import 'package:grocery_app/widgets/mainappbar.dart';
 import 'package:grocery_app/widgets/theme_button.dart';
-
 import '../helpers/utils.dart';
 
 class OnboardingScreen extends StatefulWidget {
@@ -123,19 +122,19 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                               border: Border.all(
                                   width: 6,
                                   color: pageIndex == index
-                                      ? Color(0xFFC1E05E)
+                                      ? const Color(0xFFC1E05E)
                                       : Theme.of(context).canvasColor)),
                         ),
                       )),
             ),
             ThemeButton(
-                label: "Saltar Onbaoarding",
+                label: "Skip Onboarding",
                 icon: Text(''),
                 onClick: () {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => CategoryListScreen(),
+                        builder: (context) => MainScreen(),
                       ));
                 })
           ],

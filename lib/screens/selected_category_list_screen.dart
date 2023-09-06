@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:grocery_app/models/category.dart';
+import 'package:grocery_app/services/cart_service.dart';
 import 'package:grocery_app/services/category_selection_services.dart';
 import 'package:grocery_app/widgets/category_icon.dart';
 import 'package:provider/provider.dart';
@@ -14,7 +15,7 @@ class SelectedCategoryScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     CategorySelectionServices catSelection =
         Provider.of(context, listen: false);
-
+    CartService cartService = Provider.of<CartService>(context, listen: false);
     selectedCategory = catSelection.selectedCategory;
     return Scaffold(
       appBar: MainAppBar(),
@@ -42,8 +43,10 @@ class SelectedCategoryScreen extends StatelessWidget {
                     selectedCategory.subCategories.length,
                     (index) => GestureDetector(
                           onTap: () {
+                            var subCat =
+                                this.selectedCategory.subCategories[index];
                             catSelection.selectedSubCategory =
-                                selectedCategory.subCategories[index];
+                                cartService.getCategoryFromCart(subCat);
                             Navigator.pushNamed(context, '/detailsScreen');
                           },
                           child: Column(

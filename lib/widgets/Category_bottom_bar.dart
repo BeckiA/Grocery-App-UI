@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:grocery_app/helpers/utils.dart';
 import 'package:provider/provider.dart';
 import '../helpers/appcolors.dart';
 import '../services/cart_service.dart';
@@ -13,10 +14,11 @@ class CategoryBottomBar extends StatelessWidget {
               color: Colors.black.withOpacity(0.2),
               offset: Offset.zero)
         ]),
-        height: 100,
-        padding: const EdgeInsets.only(bottom: 20),
+        height: 70,
+        padding: const EdgeInsets.only(bottom: 15),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             ClipOval(
               child: Material(
@@ -24,8 +26,11 @@ class CategoryBottomBar extends StatelessWidget {
                 child: IconButton(
                   splashColor: Colors.grey[100],
                   highlightColor: Colors.grey[100],
-                  icon: const Icon(Icons.favorite, color: AppColors.MAIN_COLOR),
-                  onPressed: () {},
+                  icon: const Icon(Icons.list, color: AppColors.MAIN_COLOR),
+                  onPressed: () {
+                    Utils.mainListNav.currentState!.pushReplacementNamed(
+                        '/main_screen/category_list_screen');
+                  },
                 ),
               ),
             ),
@@ -36,7 +41,10 @@ class CategoryBottomBar extends StatelessWidget {
                     child: InkWell(
                         splashColor: Colors.grey[100],
                         highlightColor: Colors.grey[100],
-                        onTap: () {},
+                        onTap: () {
+                          Utils.mainListNav.currentState!.pushReplacementNamed(
+                              '/main_screen/shopping_list_screen');
+                        },
                         child: Container(
                             padding: const EdgeInsets.all(12),
                             child: Consumer<CartService>(
@@ -68,8 +76,11 @@ class CategoryBottomBar extends StatelessWidget {
                 child: IconButton(
                   splashColor: Colors.grey[100],
                   highlightColor: Colors.grey[100],
-                  icon: const Icon(Icons.pin_drop, color: AppColors.MAIN_COLOR),
-                  onPressed: () {},
+                  icon: const Icon(Icons.favorite, color: AppColors.MAIN_COLOR),
+                  onPressed: () {
+                    Utils.mainListNav.currentState!
+                        .pushReplacementNamed('/main_screen/favorites_screen');
+                  },
                 ),
               ),
             ),
@@ -80,7 +91,10 @@ class CategoryBottomBar extends StatelessWidget {
                   splashColor: Colors.grey[100],
                   highlightColor: Colors.grey[100],
                   icon: const Icon(Icons.settings, color: AppColors.MAIN_COLOR),
-                  onPressed: () {},
+                  onPressed: () {
+                    Utils.mainListNav.currentState!
+                        .pushReplacementNamed('/main_screen/settings_screen');
+                  },
                 ),
               ),
             ),

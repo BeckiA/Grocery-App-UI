@@ -17,39 +17,32 @@ class CategoryListScreen extends StatelessWidget {
         Provider.of(context, listen: false);
 
     return Scaffold(
-        drawer: Drawer(
-          child: SideMenuBar(),
-        ),
-        appBar: MainAppBar(),
         body: Container(
-          child: Stack(children: [
-            Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
-              const Padding(
-                  padding: EdgeInsets.only(top: 10, bottom: 10),
-                  child: Text(
-                    "Select a Category",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(color: Colors.black),
-                  )),
-              Expanded(
-                  child: ListView.builder(
-                      padding: const EdgeInsets.only(bottom: 80),
-                      itemCount: categories.length,
-                      itemBuilder: (BuildContext ctx, int index) {
-                        return CategoryCard(
-                            category: categories[index],
-                            onCardClick: () {
-                              // Will Get routed to the detail screen
-                              catSelection.selectedCategory =
-                                  this.categories[index];
-                              Navigator.of(context)
-                                  .pushNamed('/selectedCategoryScreen');
-                            });
-                      }))
-            ]),
-            Positioned(
-                bottom: 0, left: 0, right: 0, child: CategoryBottomBar()),
-          ]),
-        ));
+      child: Stack(children: [
+        Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+          const Padding(
+              padding: EdgeInsets.only(top: 10, bottom: 10),
+              child: Text(
+                "Select a Category",
+                textAlign: TextAlign.center,
+                style: TextStyle(color: Colors.black),
+              )),
+          Expanded(
+              child: ListView.builder(
+                  padding: const EdgeInsets.only(bottom: 80),
+                  itemCount: categories.length,
+                  itemBuilder: (BuildContext ctx, int index) {
+                    return CategoryCard(
+                        category: categories[index],
+                        onCardClick: () {
+                          // Will Get routed to the detail screen
+                          catSelection.selectedCategory =
+                              this.categories[index];
+                          Utils.mainAppNav.currentState!.pushNamed('/selectedCategoryScreen');
+                        });
+                  }))
+        ]),
+      ]),
+    ));
   }
 }

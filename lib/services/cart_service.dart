@@ -15,8 +15,33 @@ class CartService extends ChangeNotifier {
   }
 
   bool isSubCategoryAddedToCart(SubCategory cat) {
-    return _items.length > 0
+    return _items.isNotEmpty
         ? _items.any((CartItem item) => item.catergory.name == cat.name)
         : false;
+  }
+
+  void remove(CartItem item) {
+    _items.remove(item);
+    notifyListeners();
+  }
+
+  void removeAll() {
+    _items.clear();
+    notifyListeners();
+  }
+
+  SubCategory getCategoryFromCart(SubCategory cat) {
+    SubCategory subCat = cat;
+    if (_items.isNotEmpty &&
+        _items.any((CartItem item) => item.catergory.name == cat.name)) {
+      CartItem cartItem =
+          _items.firstWhere((CartItem item) => item.catergory.name == cat.name);
+
+      if (cartItem != null) {
+        subCat = cartItem.catergory;
+      }
+    }
+
+    return subCat;
   }
 }

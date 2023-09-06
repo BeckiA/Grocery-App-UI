@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:grocery_app/helpers/appcolors.dart';
+import 'package:grocery_app/screens/main_screen.dart';
 import 'package:grocery_app/screens/onboarding_screen.dart';
 import 'package:grocery_app/widgets/theme_button.dart';
 import 'package:provider/provider.dart';
@@ -83,7 +84,7 @@ class WelcomeScreen extends StatelessWidget {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => CategoryListScreen(),
+                            builder: (context) => MainScreen(),
                           ));
                     }
                   },

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../helpers/appcolors.dart';
 import '../helpers/icon_helper.dart';
+import '../helpers/utils.dart';
 import '../services/login_service.dart';
 import '../widgets/icon_font.dart';
 
@@ -26,13 +27,13 @@ class SideMenuBar extends StatelessWidget {
                         onPressed: () async {
                           if (userLoggedIn) {
                             loginService.signOut();
-                            Navigator.of(context)
+                            Utils.mainAppNav.currentState!
                                 .pushReplacementNamed('/welcomescreen');
                           } else {
                             bool success =
                                 await loginService.signInWithGoogle();
                             if (success) {
-                              Navigator.of(context)
+                              Utils.mainAppNav.currentState!
                                   .pushNamed('/categoryListScreen');
                             }
                           }
@@ -52,7 +53,8 @@ class SideMenuBar extends StatelessWidget {
                         visible: !userLoggedIn,
                         child: TextButton(
                             onPressed: () async {
-                              Navigator.of(context).pushNamed('/welcomepage');
+                              Utils.mainAppNav.currentState!
+                                  .pushNamed('/welcomepage');
                             },
                             child: Row(
                               children: const [
