@@ -30,15 +30,16 @@ class Utils {
     return [
       Categories(
           color: AppColors.MEATS,
+          name: "Carnes",
+          imgName: "cat1",
           icon: IconHelper.MEATS,
-          imgName: 'cat1',
-          name: 'Carnes',
           subCategories: [
             SubCategory(
                 color: AppColors.MEATS,
                 name: "Cerdo",
                 imgName: "cat1_1",
                 icon: IconHelper.MEATS,
+                price: 5.0,
                 parts: [
                   CategoryPart(
                       name: 'Jamon', imgName: 'cat1_1_p1', isSelected: false),
@@ -62,6 +63,7 @@ class Utils {
                 imgName: "cat1_2",
                 icon: IconHelper.MEATS,
                 color: AppColors.MEATS,
+                price: 10.0,
                 parts: [
                   CategoryPart(
                       name: 'Costilla',
@@ -79,6 +81,7 @@ class Utils {
                 imgName: "cat1_3",
                 icon: IconHelper.MEATS,
                 color: AppColors.MEATS,
+                price: 8.0,
                 parts: [
                   CategoryPart(
                       name: 'Alitas', imgName: 'cat1_2_p1', isSelected: false),
@@ -98,6 +101,7 @@ class Utils {
                 imgName: "cat1_4",
                 icon: IconHelper.MEATS,
                 color: AppColors.MEATS,
+                price: 12.0,
                 parts: [
                   CategoryPart(
                       name: 'Pechuga', imgName: 'cat1_4_p1', isSelected: false),
@@ -111,6 +115,7 @@ class Utils {
                 imgName: "cat1_5",
                 icon: IconHelper.MEATS,
                 color: AppColors.MEATS,
+                price: 10.0,
                 parts: [
                   CategoryPart(
                       name: 'Chuletas',
@@ -126,6 +131,7 @@ class Utils {
                 imgName: "cat1_6",
                 icon: IconHelper.MEATS,
                 color: AppColors.MEATS,
+                price: 15.0,
                 parts: [
                   CategoryPart(
                       name: 'Lomo', imgName: 'cat1_6_p1', isSelected: false),
@@ -135,34 +141,186 @@ class Utils {
           ]),
       Categories(
           color: AppColors.FRUITS,
+          name: "Frutas",
+          imgName: "cat2",
           icon: IconHelper.FRUITS,
-          imgName: 'cat2',
-          name: 'Fruits',
-          subCategories: []),
+          subCategories: [
+            SubCategory(
+                color: AppColors.FRUITS,
+                name: "Kiwi",
+                imgName: "cat2_1",
+                icon: IconHelper.FRUITS,
+                price: 5.0,
+                parts: []),
+            SubCategory(
+                color: AppColors.FRUITS,
+                name: "Banana",
+                imgName: "cat2_2",
+                icon: IconHelper.FRUITS,
+                price: 5.0,
+                parts: []),
+            SubCategory(
+                color: AppColors.FRUITS,
+                name: "Toronja",
+                imgName: "cat2_3",
+                icon: IconHelper.FRUITS,
+                price: 5.0,
+                parts: []),
+            SubCategory(
+                color: AppColors.FRUITS,
+                name: "Naranja",
+                imgName: "cat2_4",
+                icon: IconHelper.FRUITS,
+                price: 5.0,
+                parts: []),
+            SubCategory(
+                color: AppColors.FRUITS,
+                name: "Aguacate",
+                imgName: "cat2_5",
+                icon: IconHelper.FRUITS,
+                price: 5.0,
+                parts: [])
+          ]),
       Categories(
           color: AppColors.VEGS,
+          name: "Vegetales",
+          imgName: "cat3",
           icon: IconHelper.VEGS,
-          imgName: 'cat3',
-          name: 'Vegetables',
-          subCategories: []),
+          subCategories: [
+            SubCategory(
+                color: AppColors.VEGS,
+                name: "Pimiento Rojo",
+                imgName: "cat3_1",
+                icon: IconHelper.VEGS,
+                price: 5.0,
+                parts: []),
+            SubCategory(
+                color: AppColors.VEGS,
+                name: "Zanahoria",
+                imgName: "cat3_2",
+                icon: IconHelper.VEGS,
+                price: 5.0,
+                parts: []),
+            SubCategory(
+                color: AppColors.VEGS,
+                name: "Espárrago",
+                imgName: "cat3_3",
+                icon: IconHelper.VEGS,
+                price: 5.0,
+                parts: []),
+            SubCategory(
+                color: AppColors.VEGS,
+                name: "Cebolla",
+                imgName: "cat3_4",
+                icon: IconHelper.VEGS,
+                price: 5.0,
+                parts: [])
+          ]),
       Categories(
           color: AppColors.SEEDS,
+          name: "Semillas",
+          imgName: "cat4",
           icon: IconHelper.SEEDS,
-          imgName: 'cat4',
-          name: 'Semillas',
-          subCategories: []),
+          subCategories: [
+            SubCategory(
+                color: AppColors.SEEDS,
+                name: "Cajuil",
+                imgName: "cat4_1",
+                icon: IconHelper.SEEDS,
+                price: 5.0,
+                parts: []),
+            SubCategory(
+                color: AppColors.SEEDS,
+                name: "Maní",
+                imgName: "cat4_2",
+                icon: IconHelper.SEEDS,
+                price: 5.0,
+                parts: []),
+            SubCategory(
+                color: AppColors.SEEDS,
+                name: "Almendra",
+                imgName: "cat4_3",
+                icon: IconHelper.SEEDS,
+                price: 5.0,
+                parts: []),
+            SubCategory(
+                color: AppColors.SEEDS,
+                name: "Pistacho",
+                imgName: "cat4_4",
+                icon: IconHelper.SEEDS,
+                price: 5.0,
+                parts: [])
+          ]),
       Categories(
           color: AppColors.PASTRIES,
+          name: "Dulces",
+          imgName: "cat5",
           icon: IconHelper.PASTRIES,
-          imgName: 'cat5',
-          name: 'Dulces',
-          subCategories: []),
+          subCategories: [
+            SubCategory(
+                color: AppColors.PASTRIES,
+                name: "Dulce de Leche",
+                imgName: "cat5_1",
+                icon: IconHelper.PASTRIES,
+                price: 5.0,
+                parts: []),
+            SubCategory(
+                color: AppColors.PASTRIES,
+                name: "Dulce de Naranja",
+                imgName: "cat5_2",
+                icon: IconHelper.PASTRIES,
+                price: 5.0,
+                parts: []),
+            SubCategory(
+                color: AppColors.PASTRIES,
+                name: "Dulce de Guayaba",
+                imgName: "cat5_3",
+                icon: IconHelper.PASTRIES,
+                price: 5.0,
+                parts: []),
+            SubCategory(
+                color: AppColors.PASTRIES,
+                name: "Dulce de Coco",
+                imgName: "cat5_4",
+                icon: IconHelper.PASTRIES,
+                price: 5.0,
+                parts: [])
+          ]),
       Categories(
           color: AppColors.SPICES,
+          name: "Especies",
+          imgName: "cat6",
           icon: IconHelper.SPICES,
-          imgName: 'cat6',
-          name: 'Especies',
-          subCategories: []),
+          subCategories: [
+            SubCategory(
+                color: AppColors.SPICES,
+                name: "Orégano",
+                imgName: "cat6_1",
+                icon: IconHelper.SPICES,
+                price: 5.0,
+                parts: []),
+            SubCategory(
+                color: AppColors.SPICES,
+                name: "Bija",
+                imgName: "cat6_2",
+                icon: IconHelper.SPICES,
+                price: 5.0,
+                parts: []),
+            SubCategory(
+                color: AppColors.SPICES,
+                name: "Pimienta",
+                imgName: "cat6_3",
+                icon: IconHelper.SPICES,
+                price: 5.0,
+                parts: []),
+            SubCategory(
+                color: AppColors.SPICES,
+                name: "Canela",
+                imgName: "cat6_4",
+                icon: IconHelper.SPICES,
+                price: 5.0,
+                parts: [])
+          ])
     ];
   }
 
