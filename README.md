@@ -1,4 +1,4 @@
-#Oriella Grocery App
+# Oriella Grocery App
 
 Created a beautiful novel restaurant clone app using Flutter and Firebase. Unveiled
 a mesmerizing UI that reflects the restaurant environment and seamless UX for
